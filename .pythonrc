@@ -1,0 +1,49 @@
+import os
+
+"""
+Ken Sheedlo's .pythonrc.
+
+This script enables tab completion and history in the Python shell.
+"""
+
+try:
+    import readline
+except ImportError:
+    print 'Module readline not available.'
+else:
+    import rlcompleter
+
+    class IrlCompleter(rlcompleter.Completer):
+        """
+        This class enables a "tab" insertion if there's no text for
+        completion.
+
+        The default "tab" is four spaces. You can initialize with '\t' as
+        the tab if you wish to use a genuine tab.
+
+        Taken from http://igotgenes.blogspot.com/2009/01/tab-completion-and-history-in-python.html
+        Chris Lasher, CC Attribution 3.0 Unported License
+        """
+
+        def __init__(self, tab='    '):
+            self.tab = tab
+            rlcompleter.Completer.__init__(self)
+
+        def complete(self, text, state):
+            if text == '':
+                return (self.tab, None)[state]
+            else:
+                return rlcompleter.Completer.complete(self,text,state)
+
+    readline.parse_and_bind("bind ^I rl_complete")
+    readline.set_completer(IrlCompleter().complete)
+
+histfile = os.path.join(os.path.expanduser("~"), ".pyhist")
+try:
+    readline.read_history_file(histfile)
+except IOError:
+    pass
+        
+import atexit
+atexit.register(readline.write_history_file, histfile)
+del os, histfile
