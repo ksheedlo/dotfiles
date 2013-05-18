@@ -20,6 +20,9 @@ set shiftwidth=4
 set hlsearch
 set incsearch
 
+" Start scrolling three lines before the horizontal window border
+set scrolloff=3
+
 " Show the cursor position
 set ruler
 
@@ -42,6 +45,9 @@ cab b buffers
 cab hex %!xxd
 cab nohex %!xxd -r
 
+" Trigger nerdtree with nt
+cab nt NERDTree
+
 " I don't know what this does, but it's important
 set cinkeys=0{,0},:,0#,!^F
 
@@ -58,6 +64,12 @@ nnoremap <backspace> 10kzz
 
 " Some use Escape, some use Caps Lock, I use jk
 imap jk <ESC>
+
+" Always use ftplugin
+filetype plugin indent on
+
+" Highlight and indent .json files as .js files
+autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " Pathogen
 execute pathogen#infect()

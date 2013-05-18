@@ -13,6 +13,7 @@ git clone https://github.com/scrooloose/nerdtree.git
 git clone git://github.com/tpope/vim-fugitive.git
 git clone https://github.com/gregsexton/gitv.git
 git clone https://github.com/Lokaltog/powerline.git
+git clone git://github.com/FredKSchott/CoVim.git
 
 cat <<xxSmokeWeed420
 
