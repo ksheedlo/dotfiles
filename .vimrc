@@ -61,6 +61,9 @@ set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
     set undodir=~/.vim/undo
+    if has("persistent_undo")
+        set undofile
+    endif
 endif
 
 " Remap space and backspace for faster navigation
