@@ -1,0 +1,31 @@
+# File: ~/.inputrc
+# Inspired by Mathias Bynens' dotfiles.
+
+# Don't trash the system readline configuration
+$include /etc/inputrc
+
+# Use readline in vi mode
+set editing-mode vi
+
+# Use the text that has already been typed as the prefix for searching through
+# command history.
+$if mode=vi
+    set keymap vi-command
+    "\e[A": history-search-backward
+    "\e[B": history-search-forward
+    set keymap vi-insert
+    "\e[A": history-search-backward
+    "\e[B": history-search-forward
+$endif
+
+# Make Tab autocomplete regardless of filename case
+set completion-ignore-case on
+
+# Don't autocomplete hidden files unless the pattern begins with a dot
+set match-hidden-files off
+
+# Don't page autocompletions. Show them all at once
+# set page-completions off
+
+# If there are more than 200 query results, ask to show them.
+set completion-query-items 200
