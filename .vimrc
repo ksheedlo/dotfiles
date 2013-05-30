@@ -38,6 +38,11 @@ set number
 " Reload files changed outside of Vim
 set autoread
 
+" Smart command completion
+set wildmenu
+set wildmode=list:longest,full
+set wildignore=*.o,*~,*.pyc,*.pyo,*.so,*.sw*,__pycache__
+
 " Show the current buffers with :b
 cab b buffers
 
