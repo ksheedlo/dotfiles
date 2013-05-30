@@ -5,9 +5,6 @@
 	co = checkout
 [core]
 	editor = vim
-[user]
-	name = Bugs Bunny
-	email = bubu9999@example.com
 [color]
 	ui = true
 [help]
