@@ -1,0 +1,18 @@
+[alias]
+	di = diff
+	st = status -sb
+	ci = commit
+	co = checkout
+[core]
+	editor = vim
+[user]
+	name = Bugs Bunny
+	email = bubu9999@example.com
+[color]
+	ui = true
+[help]
+	autocorrect = 1
+[rerere]
+	enabled = 1
+[push]
+	default = simple
