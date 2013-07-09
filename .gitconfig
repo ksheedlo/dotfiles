@@ -3,6 +3,7 @@
 	st = status -sb
 	ci = commit
 	co = checkout
+        ff = pull --ff-only
 [core]
 	editor = vim
 [color]
