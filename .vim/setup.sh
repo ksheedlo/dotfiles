@@ -3,6 +3,10 @@
 
 set -e
 
+mkdir -p ~/.vim/backups
+mkdir -p ~/.vim/swaps
+mkdir -p ~/.vim/undo
+
 mkdir -p ~/.vim/bundle
 cd ~/.vim/bundle
 
