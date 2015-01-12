@@ -24,13 +24,21 @@ fi
 #
 # Since this is an important password generating program, here's a breakdown.
 #
-#   -n 4 - Choose 4 words
 #   --random-source=/dev/urandom - Use /dev/urandom as the source of entropy.
 #                                   Whatever we choose, it should be non-blocking
 #                                   and cryptographically secure. /dev/urandom
 #                                   fulfills these requirements on both platforms.
 #   /usr/share/dict/words - The dictionary, that should exist on both platforms.
+#   | grep -v "'" - Some dictionaries include English possessives (e.g.,
+#                   "Alice's", "Bob's"). These mess with xargs and are not
+#                   particularly useful in passwords anyway as opposed to the
+#                   root word of the phrase.
+#   | head -n 4 - Choose 4 words. shuf or gshuf has a -n option as well, but
+#                 this needs to occur after the grep.
 #   | xargs echo - Print everything on one line.
 #
 
-$SHUF -n 4 --random-source=/dev/urandom /usr/share/dict/words | xargs echo
+$SHUF --random-source=/dev/urandom /usr/share/dict/words \
+  | grep -v "'" \
+  | head -n 4 \
+  | xargs echo
