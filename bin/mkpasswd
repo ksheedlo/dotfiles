@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# http://xkcd.com/936/
+
+# shuf is the Unix shuffler. It comes with Linux. On OS X, the equivalent
+# program is called gshuf and it comes with the brew distribution of
+# coreutils.
+
+SHUF=
+if [[ $(which gshuf) ]]
+then
+  SHUF=gshuf
+elif [[ $(which shuf) ]]
+then
+  SHUF=shuf
+else
+  echo "No shuf or gshuf detected. On OS X, you can fix this by running:"
+  echo
+  echo "  $ brew install coreutils"
+  echo
+  exit 1
+fi
+
+#
+# Since this is an important password generating program, here's a breakdown.
+#
+#   -n 4 - Choose 4 words
+#   --random-source=/dev/urandom - Use /dev/urandom as the source of entropy.
+#                                   Whatever we choose, it should be non-blocking
+#                                   and cryptographically secure. /dev/urandom
+#                                   fulfills these requirements on both platforms.
+#   /usr/share/dict/words - The dictionary, that should exist on both platforms.
+#   | xargs echo - Print everything on one line.
+#
+
+$SHUF -n 4 --random-source=/dev/urandom /usr/share/dict/words | xargs echo
