@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+find ~/.ghc -type d -depth 1 -delete
+rm -rf ~/.cabal/lib
+ghc-pkg check 2>&1 | grep problems | awk '{print $6}' | sed -e 's/:$//' | xargs -n 1 ghc-pkg unregister
+
